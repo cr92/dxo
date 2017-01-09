@@ -5,6 +5,7 @@ var bodyParser = require("body-parser");
 
 var app = express();
 app.use(express.static(__dirname));
+app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 
@@ -28,12 +29,14 @@ app.get('/', function(request, response) {
 });
 
 app.post("/", function(request, response) {
-	console.log(request);
+    //console.log(request);
     // if (!request.body.title || !request.body.body) {
     //     response.status(400).send("Entries must have a title and a body.");
     //     return;
     // }
-    response.redirect("/");
+    //response.redirect("/");
+    console.log(request.body);
+    response.json(request.body);
 });
 
 var server = app.listen(8081, function() {
