@@ -2,11 +2,15 @@ var express = require('express');
 var http = require("http");
 var path = require("path");
 var bodyParser = require("body-parser");
-
+var mongoose=require('mongoose');
+//var config = require('./config.js');
+//var routes = require('./routes/route1.js');
+//var models = require('./model/');
 var app = express();
 app.use(express.static(__dirname));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+//mongoose.connect("mongodb://localhost:27017/image_db");
 
 
 

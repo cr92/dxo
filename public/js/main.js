@@ -36,16 +36,6 @@ function deleteImage(id) {
     $('#' + id).parent().remove();
 }
 
-// function saveAllImages()
-// {
-//     alert('all saved');
-// }
-
-
-// $("#save_all_btn").click(function() {
-//     $.post('/xcd')
-// });
-
 function saveData() {
     var collection_name = $('#img_group_name').val();
     if (collection_name) {
