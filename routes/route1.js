@@ -6,6 +6,9 @@ var connection = mysql.createConnection({
   database : 'images'
 });
 
+
+
+
 connection.connect();
 var album_name='hello';
 var query_string='SELECT stringified_src from images_table where album_id="hellow"';
@@ -18,3 +21,12 @@ connection.query(query_string, function(err, rows, fields)
 });
 
 connection.end();
+
+
+function insertInDb(data,callback)
+{
+	var album_id=data['album_id'];
+	var sources=JSON.stringify(data['sources']);
+
+	var insert_query='INSERT INTO images_table (album_id, stringified_src) VALUES ("hooha","fyy")';
+}

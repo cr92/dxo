@@ -60,7 +60,7 @@ function saveData() {
             contentType: "application/json",
             data: JSON.stringify({
                 "album_id": collection_name,
-                "images": images
+                "sources": images
             }),
             error: function(error) {
                 console.log(error);
@@ -73,3 +73,9 @@ function saveData() {
     }
 }
 
+
+$(document).ready(function() {
+    var link = window.location.href;
+    console.log(link);
+    
+});

@@ -44,6 +44,11 @@ app.post("/", function(request, response) {
 
 });
 
+app.get("/*", function(request,response)
+	{
+		response.sendFile(__dirname + '/views/index.html');
+	});
+
 var server = app.listen(8081, function() {
     var host = server.address().address;
     var port = server.address().port;
