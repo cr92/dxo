@@ -1,4 +1,7 @@
 var image_count = 0;
+var images = {
+
+}
 
 function showImage(path) {
     image_count++;
@@ -39,6 +42,29 @@ function deleteImage(id) {
 // }
 
 
-$("#save_all_btn").click(function() {
-    $.post('/xcd')
-});
+// $("#save_all_btn").click(function() {
+//     $.post('/xcd')
+// });
+
+function saveData() {
+    var collection_name = $('#img_group_name').val();
+    if (collection_name) {
+        $.ajax({
+            type: 'POST',
+            url: "/",
+            dataType: "json",
+            contentType: "application/json",
+            data: JSON.stringify({
+                "a": 1,
+                "b": 2
+            }),
+            error: function(error) {
+                console.log(error);
+            },
+            success: function(data) {
+                console.log('Success!')
+            }
+
+        });
+    }
+}
