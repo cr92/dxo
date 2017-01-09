@@ -4,7 +4,7 @@ var path = require("path");
 var bodyParser = require("body-parser");
 var mongoose=require('mongoose');
 //var config = require('./config.js');
-var storeInDB = require('./routes/route1.js');
+//var storeInDB = require('./routes/route1.js');
 //var models = require('./model/');
 var app = express();
 app.use(express.static(__dirname));
