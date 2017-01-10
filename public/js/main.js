@@ -94,7 +94,7 @@ $(document).ready(function() {
                 console.log(JSON.parse(data[0]["stringified_src"]));
                 images = JSON.parse(data[0]["stringified_src"]);
                 image_count = images.length;
-
+                buildFromResponse();
 
 
 
@@ -109,13 +109,7 @@ $(document).ready(function() {
         console.log('hey');
 });
 
-
-
-function buildFromResponse(resp) {
-    image_count = resp.length;
-    console.log(resp.length);
-    images = resp;
-
+function buildFromResponse() {
     for (var i = 1; i <= image_count; i++) {
         var child_viewer = '<div><img id="image_viewer_' + i + '" src="' + images[i - 1] + '" class="img_window_size" style="display:block"/>' + '<button type="button" id="img_delete_' + i + '" class="btn btn-danger" onclick="deleteImage(id)"> Delete </button></div>';
         $('#viewer_div').append(child_viewer);
