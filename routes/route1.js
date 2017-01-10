@@ -1,11 +1,10 @@
 var express = require('express');
 var mysql = require('mysql');
-var connection = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: 'root123',
-    database: 'images'
-});
+var db = require('../setup.js');
+
+//console.log(db.db_config);
+
+var connection = mysql.createConnection(db.db_config);
 connection.connect();
 
 
