@@ -16,32 +16,46 @@ app.get('/', function(request, response) {
     response.sendFile(__dirname + '/views/index.html');
 });
 
-app.post("/", function(request, response) {
+app.post("/*", function(request, response) {
     console.log(request.body);
     var data_to_store = request.body;
     route1.insertInDb(data_to_store, function(error, result) {
-        if (error)
+        if (error) {
             console.log(error);
-        	throw error;
-        else
-        	console.log('--------------added')
-        	//response.sendFile(__dirname + '/views/index.html');
-            //response.redirect("/");
+            throw error;
+        } else {
+            console.log('--------------added');
+            // response.sendFile(__dirname + '/views/index.html');
+            // response.redirect("/");
+        }
     });
-
-
 });
 
 app.get("/album/*", function(request, response) {
-    response.sendFile(__dirname + '/views/index.html');
+    console.log('ajax' + request.originalUrl);
+    var album_id = request.originalUrl.split('/')[1];
+    console.log('+++++' + album_id);
+
+    route1.retrieveAlbum(album_id, function(error, result) {
+        if (error) {
+            console.log(error);
+            throw error;
+        } else {
+            console.log('-------found ' + result);
+        }
+    });
+    //response.sendFile(__dirname + '/views/index.html');
 });
 
 app.get("/*", function(request, response) {
+    console.log('page' + request.originalUrl);
+    var page_id = request.originalUrl.split('/')[1];
+    console.log('xxxxxx' + page_id);
     response.sendFile(__dirname + '/views/index.html');
 });
 
 var server = app.listen(8081, function() {
     var host = server.address().address;
     var port = server.address().port;
-    console.log("Example app listening at http://%s:%s", host, port)
+    console.log("listening at http://%s:%s", host, port)
 })
