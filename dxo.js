@@ -42,6 +42,7 @@ app.get("/album/*", function(request, response) {
             throw error;
         } else {
             console.log('-------found ' + result);
+            response.send('dsfasfasdsadasdasdsa');
         }
     });
     //response.sendFile(__dirname + '/views/index.html');

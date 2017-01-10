@@ -81,12 +81,14 @@ $(document).ready(function() {
     if (link.split('/')[link.split('/').length - 1] !== '') {
         console.log('OK good');
 
-        var _id=link.split('/')[link.split('/').length - 1];
+        var _id = link.split('/')[link.split('/').length - 1];
         console.log(_id);
         $.ajax({
-            url: 'album/'+_id,
+            url: 'album/' + _id,
             type: 'GET',
             dataType: 'json',
+            timeout: 5000,
+            //async: false,
             error: function(error) {
                 console.log('NOK ' + error);
             },
