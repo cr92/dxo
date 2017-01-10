@@ -6,15 +6,16 @@ var connection = mysql.createConnection({
     password: 'root123',
     database: 'images'
 });
+connection.connect();
 
 
 //var data = { album_id: 'jhfjhfhkf', sources: ['fgfg', 'fuhfi', 'ydyu'] };
 //insertInDb(data);
-//retrieveAlbum('foo')
+//retrieveAlbum('humpy')
+
 
 
 function insertInDb(data, callback) {
-    connection.connect();
     var album_id = data['album_id'];
     var sources = JSON.stringify(data['sources']);
 
@@ -25,11 +26,9 @@ function insertInDb(data, callback) {
     connection.query('INSERT INTO images_table SET ?', data_to_db, function(error, result) {
         if (error) {
             console.log(error);
-            connection.end();
             return callback(error, null);
         } else {
             console.log('success' + result);
-            connection.end();
             return callback(null, 'success');
         }
     });
@@ -37,17 +36,14 @@ function insertInDb(data, callback) {
 
 
 function retrieveAlbum(album_id, callback) {
-    connection.connect();
     var query_string = 'SELECT stringified_src FROM images_table WHERE album_id="' + album_id + '"';
     connection.query(query_string, function(error, result) {
         if (error) {
             console.log(error);
-            connection.end();
             return callback(error, null);
         } else {
-            console.log('success' + JSON.stringify(result));
-            connection.end();
-            return callback(null, 'success');
+            console.log('succ' + JSON.stringify(result));
+            return callback(null, result);
         }
     });
 }

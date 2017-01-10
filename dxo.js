@@ -33,7 +33,7 @@ app.post("/*", function(request, response) {
 
 app.get("/album/*", function(request, response) {
     console.log('ajax' + request.originalUrl);
-    var album_id = request.originalUrl.split('/')[1];
+    var album_id = request.originalUrl.split('/')[2];
     console.log('+++++' + album_id);
 
     route1.retrieveAlbum(album_id, function(error, result) {
@@ -41,8 +41,10 @@ app.get("/album/*", function(request, response) {
             console.log(error);
             throw error;
         } else {
-            console.log('-------found ' + result);
-            response.send('dsfasfasdsadasdasdsa');
+            console.log('-------found ' + JSON.stringify(result));
+            //response.send('dsfasfasdsadasdasdsa');
+            response.setHeader('Content-Type', 'application/json');
+            response.send(JSON.stringify(result));
         }
     });
     //response.sendFile(__dirname + '/views/index.html');

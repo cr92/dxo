@@ -89,12 +89,19 @@ $(document).ready(function() {
             dataType: 'json',
             timeout: 5000,
             //async: false,
-            error: function(error) {
-                console.log('NOK ' + error);
-            },
             success: function(data) {
-                console.log('OK ' + data);
-                //buildFromResponse(data);
+                console.log('OK ' + JSON.stringify(data));
+                console.log(JSON.parse(data[0]["stringified_src"]));
+                images = JSON.parse(data[0]["stringified_src"]);
+                image_count = images.length;
+
+
+
+
+
+            },
+            error: function(error) {
+                console.log('NOK ' + JSON.stringify(error));
             },
         });
 
