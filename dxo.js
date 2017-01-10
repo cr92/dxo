@@ -22,11 +22,15 @@ app.post("/*", function(request, response) {
     route1.insertInDb(data_to_store, function(error, result) {
         if (error) {
             console.log(error);
+            response.setHeader('Content-Type', 'application/json');
+            response.send(JSON.stringify(error));
             throw error;
         } else {
             console.log('--------------added');
             // response.sendFile(__dirname + '/views/index.html');
             // response.redirect("/");
+            response.setHeader('Content-Type', 'application/json');
+            response.send(JSON.stringify(result));
         }
     });
 });

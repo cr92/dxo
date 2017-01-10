@@ -64,9 +64,12 @@ function saveData() {
             }),
             error: function(error) {
                 console.log(error);
+                $('#save_all_btn').html('Failed! Retry');
             },
             success: function(data) {
-                console.log('Success!')
+                console.log('Success!');
+                //$('#save_all_btn').html('Done');
+                window.location.reload();
             }
 
         });
