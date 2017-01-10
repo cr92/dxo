@@ -73,7 +73,7 @@ function saveData() {
     }
 }
 
-var resp_=['http://www.w3schools.com/angular/pic_angular.jpg','https://www.netgains.org/wp-content/uploads/2014/01/node_js.png'];
+var resp_ = ['http://www.w3schools.com/angular/pic_angular.jpg', 'https://www.netgains.org/wp-content/uploads/2014/01/node_js.png'];
 
 $(document).ready(function() {
     var link = window.location.href;
@@ -94,7 +94,20 @@ function buildFromResponse(resp) {
     images = resp;
 
     for (var i = 1; i <= image_count; i++) {
-        var child_viewer = '<div><img id="image_viewer_' + i + '" src="' + images[i-1] + '" class="img_window_size" style="display:block"/>' + '<button type="button" id="img_delete_' + i + '" class="btn btn-danger" onclick="deleteImage(id)"> Delete </button></div>';
+        var child_viewer = '<div><img id="image_viewer_' + i + '" src="' + images[i - 1] + '" class="img_window_size" style="display:block"/>' + '<button type="button" id="img_delete_' + i + '" class="btn btn-danger" onclick="deleteImage(id)"> Delete </button></div>';
         $('#viewer_div').append(child_viewer);
     }
 }
+
+
+$.ajax({
+    url: 'ajax/album_id',
+    type: 'GET',
+    dataType: 'json'
+    error: function(error) {
+        console.log('NOK ' + error);
+    }
+    success: function(data) {
+        console.log('OK ' + data);
+    },
+});
