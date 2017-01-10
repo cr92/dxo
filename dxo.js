@@ -28,7 +28,7 @@ app.post("/", function(request, response) {
 
 });
 
-app.get("/ajax/*", function(request, response) {
+app.get("/album/*", function(request, response) {
     response.sendFile(__dirname + '/views/index.html');
 });
 

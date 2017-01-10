@@ -80,8 +80,22 @@ $(document).ready(function() {
     console.log(link);
     if (link.split('/')[link.split('/').length - 1] !== '') {
         console.log('OK good');
-        //make an AJAX call to retrieve data from album_id
-        buildFromResponse(resp_);
+
+        var _id=link.split('/')[link.split('/').length - 1];
+        console.log(_id);
+        $.ajax({
+            url: 'album/'+_id,
+            type: 'GET',
+            dataType: 'json'
+            error: function(error) {
+                console.log('NOK ' + error);
+            }
+            success: function(data) {
+                console.log('OK ' + data);
+                //buildFromResponse(data);
+            },
+        });
+
     } else
         console.log('hey');
 });
@@ -98,16 +112,3 @@ function buildFromResponse(resp) {
         $('#viewer_div').append(child_viewer);
     }
 }
-
-
-$.ajax({
-    url: 'ajax/album_id',
-    type: 'GET',
-    dataType: 'json'
-    error: function(error) {
-        console.log('NOK ' + error);
-    }
-    success: function(data) {
-        console.log('OK ' + data);
-    },
-});
