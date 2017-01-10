@@ -1,3 +1,4 @@
+var express = require('express');
 var mysql = require('mysql');
 var connection = mysql.createConnection({
     host: 'localhost',
@@ -6,17 +7,10 @@ var connection = mysql.createConnection({
     database: 'images'
 });
 
-var data = { album_id: 'jhfjhfhkf', sources: ['fgfg', 'fuhfi', 'ydyu'] };
-insertInDb(data);
 
-
-
-
-
-
-
-
-
+//var data = { album_id: 'jhfjhfhkf', sources: ['fgfg', 'fuhfi', 'ydyu'] };
+//insertInDb(data);
+//retrieveAlbum('foo')
 
 
 function insertInDb(data) {
@@ -38,3 +32,19 @@ function insertInDb(data) {
         }
     });
 }
+
+
+function retrieveAlbum(album_id) {
+    connection.connect();
+    var query_string = 'SELECT stringified_src FROM images_table WHERE album_id="' + album_id + '"';
+    connection.query(query_string, function(error, result) {
+        if (error) {
+            console.log(error);
+            connection.end();
+        } else {
+            console.log('success' + JSON.stringify(result));
+            connection.end();
+        }
+    });
+}
+
