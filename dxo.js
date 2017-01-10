@@ -22,8 +22,11 @@ app.post("/", function(request, response) {
     route1.insertInDb(data_to_store, function(error, result) {
         if (error)
             console.log(error);
+        	throw error;
         else
-            response.redirect("/");
+        	console.log('--------------added')
+        	//response.sendFile(__dirname + '/views/index.html');
+            //response.redirect("/");
     });
 
 
