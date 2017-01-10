@@ -4,7 +4,7 @@ var path = require("path");
 var bodyParser = require("body-parser");
 var mongoose = require('mongoose');
 //var config = require('./config.js');
-//var storeInDB = require('./routes/route1.js');
+var route1 = require('./routes/route1.js');
 //var models = require('./model/');
 var app = express();
 app.use(express.static(__dirname));
@@ -17,14 +17,15 @@ app.get('/', function(request, response) {
 });
 
 app.post("/", function(request, response) {
-    //console.log(request);
-    // if (!request.body.title || !request.body.body) {
-    //     response.status(400).send("Entries must have a title and a body.");
-    //     return;
-    // }
-    //response.redirect("/");
     console.log(request.body);
-    response.json(request.body);
+    var data_to_store = request.body;
+    route1.insertInDb(data_to_store, function(error, result) {
+        if (error)
+            console.log(error);
+        else
+            response.redirect("/");
+    });
+
 
 });
 

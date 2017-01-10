@@ -86,10 +86,10 @@ $(document).ready(function() {
         $.ajax({
             url: 'album/'+_id,
             type: 'GET',
-            dataType: 'json'
+            dataType: 'json',
             error: function(error) {
                 console.log('NOK ' + error);
-            }
+            },
             success: function(data) {
                 console.log('OK ' + data);
                 //buildFromResponse(data);

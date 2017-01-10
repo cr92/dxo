@@ -13,7 +13,7 @@ var connection = mysql.createConnection({
 //retrieveAlbum('foo')
 
 
-function insertInDb(data) {
+function insertInDb(data, callback) {
     connection.connect();
     var album_id = data['album_id'];
     var sources = JSON.stringify(data['sources']);
@@ -26,25 +26,33 @@ function insertInDb(data) {
         if (error) {
             console.log(error);
             connection.end();
+            return callback(error, null);
         } else {
             console.log('success' + result);
             connection.end();
+            return callback(null, 'success');
         }
     });
 }
 
 
-function retrieveAlbum(album_id) {
+function retrieveAlbum(album_id, callback) {
     connection.connect();
     var query_string = 'SELECT stringified_src FROM images_table WHERE album_id="' + album_id + '"';
     connection.query(query_string, function(error, result) {
         if (error) {
             console.log(error);
             connection.end();
+            return callback(error, null);
         } else {
             console.log('success' + JSON.stringify(result));
             connection.end();
+            return callback(null, 'success');
         }
     });
 }
 
+module.exports = {
+    retrieveAlbum: retrieveAlbum,
+    insertInDb: insertInDb
+}
